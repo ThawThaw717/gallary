@@ -4,10 +4,256 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
+    <!-- font awedome cdn ရိုက်ရှာ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+        :root {
+            /*Light theme colors */
+            --color-bg-light: rgb(142, 181, 183);
+            --color-text-light: black;
+            --color-header-bg-light: rgb(125, 195, 185);  
+            --color-header-h1-light: rgb(69, 69, 69);
+            --color-toggle-light: rgb(7, 23, 103);
+            --color-bg-button-light: gray;
+            --color-bg-button-hover-light: rgb(77, 50, 50);
+            
+
+            /* Font Sizes 1rem=16px*/
+            --font-size-base: 1rem; 
+            --font-size-sm: 0.9rem;
+            --font-size-md:1.2rem;
+            --font-size-lg: 2.5rem;
+        }
+
+        body.dark-mode {
+            --color-bg-dark: rgb(79, 76, 76);
+            --color-text-dark: white;
+            --color-header-bg-dark: black;
+            --color-header-h1-dark: rgb(233, 229, 229);
+            --color-toggle-dark: white;
+            --color-bg-button-dark: rgb(127, 126, 126);
+            --color-bg-button-hover-dark: rgb(81, 79, 79);
+            
+        }
+
+        /*
+          OR
+          root[dark-mode]{
+          }  
+          root[light-mode]{
+          }
+        */
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+       
+        body {
+            background-color: var(--color-bg-light);
+            font-family: "Inter", sans-serif;
+            color: var(--color-text-light);
+
+        }
+
+        body.dark-mode {
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-dark);
+        }
+
+        body.dark-mode header {
+            background-color: var(--color-bg-header-dark);
+            color: var(--color-text-dark)
+        }
+
+        header {
+            background-color: var(--color-header-bg-light);
+            font-size: 14px;
+           
+        }
+
+        /*header {
+            display: flex;
+            justified-content:center;
+            align-items: center;
+          }
+            ထားရင် header-box:1200px ကမပေါ်ဘဲ စာသားရှိသလောက်ပဲပေါ်တယ်
+            1200 အပြည့်ပေါ်ချင်ရင် width ကို 100% ထားပေးရမယ်
+        */
+
+        .header-box {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;/*font-size: 14px;*/
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /*em က မိဘ body or header နဲ့သက်ဆိုင်မှုမရှိ
+        rem က ရှိ
+        */
+
+        body.dark-mode header {
+            background-color: var(--color-header-bg-dark);
+        }
+
+        header h1 {
+            font-size: var(--font-size-lg);
+            color: var(--color-header-h1-light);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-bottom: 1rem;/*1rem =16px*/
+            font-weight: bolder;
+        }
+
+        body.dark-mode header h1 {
+            color: var(--color-header-h1-dark);
+        }
+
+        .header-search {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            margin-bottom: 1.4rem;
+        }
+
+        #search {
+            border: 1px solid rgb(19, 177, 45);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            width: 240px;
+            background-color: rgb(237, 255, 249);
+        }
+
+        #search::focus {
+            outline : none;
+            border-color: gray;
+        }
+
+        body.dark-mode #search::placeholder {
+            color: rgb(184, 181, 181);
+        }
+        
+        #toggle {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            background: none;
+            border: none;
+            color: var(--color-toggle-light);
+            cursor: pointer;
+        }
+
+        body.dark-mode #toggle {
+            color : var(--color-toggle-dark);
+        }
+
+        #toggle:hover{
+            transform: scale(0.8);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav ul button {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: var(--font-size-md);
+            background-color: var(--color-bg-button-light);
+            transition: background-color 0.3s ease, transform 0.2s ease , color 0.3s ease;
+        }
+
+        nav ul button:hover {
+            background:var(--color-bg-button-hover-light);
+            transform: translateY(-5px);
+            color: rgb(232, 229, 229);
+        }
+
+        body.dark-mode nav ul button {
+            background-color: var(--color-bg-button-dark);
+        }
+
+        body.dark-mode nav ul button:hover {
+            background-color: var(--color-bg-button-hover-dark);
+        }
+
+        nav ul .active {
+            background-color: rgb(81, 79, 79);
+            color: rgb(232, 229, 229);
+        }
+
+        @media(max-width : 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            #search {
+                padding: 0.3rem 1rem;
+                width: 200px;
+            }
+            nav ul button {
+                padding: 0.3rem 1rem;
+                font-size: var(--font-size-base);
+                gap: 0.3rem;
+            }
+            
+            nav ul {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width : 479px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            #search {
+                padding: 0.2rem 1rem;
+                width: 170px;
+            }
+            nav ul button {
+                padding: 0.1rem 1rem;
+                border-radius: 5px;
+                font-size: var(--font-size-sm);
+                background-color: var(--color-bg-button-light);   
+            }
+
+            nav ul {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>My Gallary</h1>
+        <div class="header-box">
+            <h1><i class="fa-solid fa-code"></i>My Portfolio</h1>
+            <div class="header-search">
+                <input type="text" placeholder="Search projects..." id="search"/>
+                <button id="toggle" aria-label="Dark/light mode button"><i class="fa-solid fa-moon"></i></button>
+            </div>
+            <nav>
+                <ul><!--data-စိတ်ကြိုက်ပေး ==>စစ်ထုတ်ပေး-->
+                    <li><button class="nav-btn active"  data-filter="all"><i class="fa-solid fa-table"></i>All</button></li>
+                    <li><button class="nav-btn" data-filter="web"><i class="fa-solid fa-laptop-code"></i>Web Design</button></li>
+                    <li><button class="nav-btn" data-filter="graphic"><i class="fa-solid fa-palette"></i>Graphic Design</button></li>
+                    <li><button class="nav-btn" data-filter="photography"><i class="fa-solid fa-camera"></i>Photography</button></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <main>
 
